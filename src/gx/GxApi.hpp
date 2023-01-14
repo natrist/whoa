@@ -1,5 +1,5 @@
-#ifndef GX_GX_HPP
-#define GX_GX_HPP
+#ifndef GX_GXAPI_HPP
+#define GX_GXAPI_HPP
 
 #include "gx/CGxCaps.hpp"
 #include "gx/CGxFormat.hpp"
@@ -17,5 +17,7 @@ bool GxCapsWindowHasFocus(int32_t);
 void GxCapsWindowSize(CRect&);
 
 void GxFormatColor(CImVector&);
+
+void GxLogOpen();
 
 #endif

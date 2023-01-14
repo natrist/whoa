@@ -1,9 +1,16 @@
+#include "BlizzardCore.hpp"
 #include "util/Filesystem.hpp"
 #include <cstring>
 #include <storm/String.hpp>
+#include <storm/Error.hpp>
 
-void OsCreateDirectory(const char* pathName, int32_t recursive) {
-    // TODO
+int OsCreateDirectory(const char* pathName, int32_t recursive) {
+    if (pathName) {
+        return Blizzard::File::CreateDirectory(pathName,recursive != 0) != 0;
+    }
+
+    SErrSetLastError(ERROR_INVALID_PARAMETER);
+    return 0;
 }
 
 void OsBuildFontFilePath(const char* fileName, char* buffer, size_t size) {

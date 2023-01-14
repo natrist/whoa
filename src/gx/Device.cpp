@@ -1,6 +1,6 @@
 #include "gx/Device.hpp"
 #include "gx/CGxDevice.hpp"
-#include "gx/Gx.hpp"
+#include "gx/GxApi.hpp"
 
 CGxDevice* g_theGxDevicePtr = nullptr;
 

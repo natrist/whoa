@@ -1,6 +1,6 @@
 #include "gx/shader/CShaderEffect.hpp"
 #include "gx/Device.hpp"
-#include "gx/Gx.hpp"
+#include "gx/GxApi.hpp"
 #include "gx/RenderState.hpp"
 #include "gx/Shader.hpp"
 #include "gx/Transform.hpp"

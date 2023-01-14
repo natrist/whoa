@@ -6,7 +6,7 @@
 #include "gx/Coordinate.hpp"
 #include "gx/Device.hpp"
 #include "gx/FontInternal.hpp"
-#include "gx/Gx.hpp"
+#include "gx/GxApi.hpp"
 #include "gx/Shader.hpp"
 #include <algorithm>
 #include <cstring>

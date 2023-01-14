@@ -3,7 +3,7 @@
 #include "gx/font/CGxFont.hpp"
 #include "gx/font/Wrap.hpp"
 #include "gx/Font.hpp"
-#include "gx/Gx.hpp"
+#include "gx/GxApi.hpp"
 #include <algorithm>
 #include <cmath>
 #include <new>

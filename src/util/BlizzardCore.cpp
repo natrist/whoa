@@ -3,6 +3,7 @@
 #include <ctime>
 #include <map>
 #include <storm/Memory.hpp>
+#include <storm/String.hpp>
 
 #if defined(WHOA_SYSTEM_MAC)
     #include <libkern/OSAtomic.h>
@@ -332,3 +333,8 @@ bool Blizzard::System_Thread::TLSSlotIsAllocated(const Thread::TLSSlot* slot) {
     return slot->allocated;
 }
 #endif
+
+int32_t Blizzard::File::CreateDirectory(const char* pathName, bool recursive) {
+    // TODO
+    return 0;
+}

@@ -1,6 +1,6 @@
 #include "gx/Texture.hpp"
 #include "gx/Device.hpp"
-#include "gx/Gx.hpp"
+#include "gx/GxApi.hpp"
 #include "gx/texture/CBLPFile.hpp"
 #include "util/Filesystem.hpp"
 #include "util/SFile.hpp"

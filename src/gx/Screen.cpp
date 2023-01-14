@@ -3,7 +3,7 @@
 #include "gx/Coordinate.hpp"
 #include "gx/Draw.hpp"
 #include "gx/Font.hpp"
-#include "gx/Gx.hpp"
+#include "gx/GxApi.hpp"
 #include "gx/Transform.hpp"
 #include "util/Filesystem.hpp"
 #include <tempest/Matrix.hpp>

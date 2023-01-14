@@ -3,7 +3,7 @@
 #include "gx/Device.hpp"
 #include "gx/Draw.hpp"
 #include "gx/Font.hpp"
-#include "gx/Gx.hpp"
+#include "gx/GxApi.hpp"
 #include "gx/RenderState.hpp"
 #include "gx/Shader.hpp"
 #include "gx/Texture.hpp"

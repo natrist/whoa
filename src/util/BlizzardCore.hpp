@@ -4,6 +4,10 @@
 #include <cstdint>
 #include <map>
 
+#if defined(WHOA_SYSTEM_WIN)
+    #include <Windows.h>
+#endif
+
 #if defined(WHOA_SYSTEM_MAC) || defined(WHOA_SYSTEM_LINUX)
     #include <pthread.h>
 #endif
@@ -15,11 +19,17 @@
 #endif
 
 namespace Blizzard {
+
     namespace Memory {
         // Functions
         void* Allocate(uint32_t);
         void* Allocate(uint32_t, uint32_t, const char*, uint32_t, const char*);
         void Free(void*);
+    };
+
+    namespace File {
+        // Functions
+        int32_t CreateDirectory(const char*, bool);
     };
 
     namespace String {

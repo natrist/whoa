@@ -1,4 +1,4 @@
-#include "gx/Gx.hpp"
+#include "gx/GxApi.hpp"
 #include "gx/Device.hpp"
 
 // TODO
@@ -93,4 +93,8 @@ void GxFormatColor(CImVector& color) {
 
         color = formattedColor;
     }
+}
+
+void GxLogOpen() {
+    CGxDevice::LogOpen();
 }
