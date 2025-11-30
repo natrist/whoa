@@ -201,7 +201,7 @@ void CSimpleEditBox::DeleteHighlight(int32_t userInput) {
     // TODO
 }
 
-void CSimpleEditBox::DeleteSubstring(int32_t left, int32_t right, int32_t a4) {
+void CSimpleEditBox::DeleteSubstring(int32_t left, int32_t right, int32_t userInput) {
     auto v5 = this->m_textInfo;
     auto v6 = left;
 
@@ -316,7 +316,7 @@ LABEL_12:
 
         this->m_dirtyFlags |= 0x1 | 0x4;
 
-        if (!a4) {
+        if (!userInput) {
             this->m_dirtyFlags |= 0x8;
         }
 
