@@ -1,4 +1,5 @@
 #include "net/connection/RealmConnection.hpp"
+#include "ClientConnection.hpp"
 #include "net/connection/RealmResponse.hpp"
 #include "net/Types.hpp"
 #include "object/Types.hpp"
