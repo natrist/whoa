@@ -39,6 +39,7 @@ class ClientConnection : public RealmConnection {
         void EnumerateCharacters(ENUMERATE_CHARACTERS_CALLBACK callback, void* param);
         void GetCharacterList();
         void GetRealmList();
+        void HandleCharacterDelete(uint8_t result);
         void Initiate(WOWCS_OPS op, int32_t errorCode, void (*cleanup)());
         int32_t IsConnected();
         int32_t PollStatus(WOWCS_OPS& op, const char** msg, int32_t& result, int32_t& errorCode);

@@ -105,6 +105,16 @@ void ClientConnection::GetRealmList() {
     }
 }
 
+void ClientConnection::HandleCharacterDelete(uint8_t result) {
+    this->Cleanup();
+
+    this->m_statusResult = result;
+    this->m_errorCode = 1;
+    this->m_statusComplete = result == 71;
+
+    // TODO LogConnectionStatus(this->m_statusCop, 0, result == 71);
+}
+
 int32_t ClientConnection::HandleConnect() {
     this->Complete(1, 5);
 

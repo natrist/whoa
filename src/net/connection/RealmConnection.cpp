@@ -1,4 +1,5 @@
 #include "net/connection/RealmConnection.hpp"
+#include "ClientConnection.hpp"
 #include "net/connection/RealmResponse.hpp"
 #include "net/Types.hpp"
 #include "object/Types.hpp"
@@ -30,7 +31,7 @@ int32_t RealmConnection::MessageHandler(void* param, NETMESSAGE msgId, uint32_t 
     }
 
     case SMSG_DELETE_CHAR: {
-        // TODO
+        result = connection->HandleCharacterDelete(msgId, time, msg);
         break;
     }
 
@@ -290,6 +291,15 @@ int32_t RealmConnection::HandleCharEnum(uint32_t msgId, uint32_t time, CDataStor
     }
 
     this->m_realmResponse->CharacterListReceived(this, this->m_characterList, listSuccess);
+
+    return 1;
+}
+
+int32_t RealmConnection::HandleCharacterDelete(uint32_t msgId, uint32_t time, CDataStore* msg) {
+    uint8_t result;
+    msg->Get(result);
+
+    static_cast<ClientConnection*>(this)->HandleCharacterDelete(result);
 
     return 1;
 }
