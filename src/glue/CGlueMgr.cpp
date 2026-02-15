@@ -132,6 +132,20 @@ void CGlueMgr::ChangeRealm(const REALM_INFO* realmInfo) {
     ClientServices::Connection()->Connect();
 }
 
+void CGlueMgr::CreateCharacter(const CHARACTER_CREATE_INFO* info) {
+    if (info) {
+        CGlueMgr::SetIdleState(IDLE_CREATE_CHARACTER);
+
+        auto errorToken = ClientServices::GetErrorToken(46);
+
+        auto text = FrameScript_GetText(errorToken, -1, GENDER_NOT_APPLICABLE);
+
+        FrameScript_SignalEvent(OPEN_STATUS_DIALOG, "%s%s", "CANCEL", text);
+
+        ClientServices::Connection()->RequestCharacterCreate(*info);
+    }
+}
+
 void CGlueMgr::CustomizeCharacter(uint64_t guid, const CHARACTER_CREATE_INFO* info) {
     if (guid && info) {
         if (*info->name) {
