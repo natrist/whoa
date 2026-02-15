@@ -72,6 +72,7 @@ class CGlueMgr {
         static void DeleteCharacter(uint64_t guid);
         static void DisplayLoginStatus();
         static void EnterWorld();
+        static void FactionChange(uint64_t guid, const CHARACTER_CREATE_INFO* info);
         static void GetCharacterList();
         static void GetRealmList(int32_t showProgressDialog);
         static int32_t HandleBattlenetDisconnect();
