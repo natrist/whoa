@@ -1098,6 +1098,7 @@ enum NETMESSAGE {
     SMSG_CORPSE_MAP_POSITION_QUERY_RESPONSE = 0x04B7,
     SMSG_LOAD_EQUIPMENT_SET             = 0x04BC,
     CMSG_CHAR_FACTION_CHANGE            = 0x04D9,
+    CMSG_CHAR_RACE_CHANGE               = 0x04F8,
     NUM_MSG_TYPES                       = 0x051F,
 };
 
