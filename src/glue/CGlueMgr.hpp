@@ -92,6 +92,7 @@ class CGlueMgr {
         static void PollRealmList(const char* msg, int32_t complete, int32_t result, WOWCS_OPS op);
         static void QuitGame();
         static void RealmListDialogCancelled();
+        static void RaceChange(uint64_t guid, const CHARACTER_CREATE_INFO* info);
         static void Resume();
         static void SetCurrentAccount(const char* accountName);
         static void SetIdleState(GLUE_IDLE_STATE state);
