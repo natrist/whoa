@@ -5,6 +5,8 @@
 #include "component/Types.hpp"
 #include "db/Db.hpp"
 #include "glue/CGlueLoading.hpp"
+#include "glue/CGlueMgr.hpp"
+#include "glue/Types.hpp"
 #include "model/CM2Shared.hpp"
 #include "net/Connection.hpp"
 #include "object/client/CGPlayer_C.hpp"
@@ -100,6 +102,77 @@ void CCharacterCreation::CreateComponent(ComponentData* data, bool randomize) {
 
     if (CCharacterCreation::s_charCustomizeFrame->m_model) {
         model->AttachToParent(CCharacterCreation::s_charCustomizeFrame->m_model, 0, nullptr, 0);
+    }
+}
+
+void CCharacterCreation::CreateCharacter(const char* name) {
+    uint64_t guid = 0;
+    CHARACTER_INFO* charInfo = nullptr;
+    uint32_t result = 0;
+
+    if (CCharacterCreation::s_existingCharacterIndex >= 0) {
+        auto existingChar = CCharacterSelection::GetCharacterDisplay(CCharacterCreation::s_existingCharacterIndex);
+
+        *charInfo = existingChar->m_info;
+
+        if (!existingChar) {
+            return;
+        }
+
+        guid = existingChar->m_info.guid;
+
+        if (name) {
+            if (!SStrCmpI(name, existingChar->m_info.name)) {
+                goto LABEL_5;
+            }
+        }
+        else {
+            name = existingChar->m_info.name;
+        }
+    }
+
+    result = 89;
+
+    if (!name || (result = ClientServices::CharacterValidateName(name), result != 87)) {
+        auto errorToken = ClientServices::GetErrorToken(result);
+
+        auto text = FrameScript_GetText(errorToken, -1, GENDER_NOT_APPLICABLE);
+
+        FrameScript_SignalEvent(OPEN_STATUS_DIALOG, "%s%s", "OKAY", text);
+
+        return;
+    }
+
+LABEL_5:
+    CHARACTER_CREATE_INFO createInfo;
+
+    SStrCopy(createInfo.name, name, 48u);
+
+    createInfo.raceID = CCharacterCreation::s_character->m_data.raceID;
+    createInfo.classID = CCharacterCreation::s_character->m_data.classID;
+    createInfo.sexID = CCharacterCreation::s_character->m_data.sexID;
+    createInfo.skinID = CCharacterCreation::s_character->m_data.skinColorID;
+    createInfo.hairColorID = CCharacterCreation::s_character->m_data.hairColorID;
+    createInfo.hairStyleID = CCharacterCreation::s_character->m_data.hairStyleID;
+    createInfo.facialHairStyleID = CCharacterCreation::s_character->m_data.facialHairStyleID;
+    createInfo.faceID = CCharacterCreation::s_character->m_data.faceID;
+    createInfo.outfitID = 0;
+
+    if (guid && charInfo) {
+        uint32_t customizeFlags = charInfo->customizeFlags;
+
+        if (customizeFlags & 0x100000) {
+            CGlueMgr::RaceChange(guid, &createInfo);
+        }
+        else if (customizeFlags & 0x10000) {
+            CGlueMgr::FactionChange(guid, &createInfo);
+        }
+        else {
+            CGlueMgr::CustomizeCharacter(guid, &createInfo);
+        }
+    }
+    else {
+        CGlueMgr::CreateCharacter(&createInfo);
     }
 }
 
