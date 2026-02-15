@@ -34,6 +34,7 @@ class ClientServices : public LoginResponse {
         static void ConnectToSelectedServer();
         static ClientConnection* Connection();
         static void CharacterDelete(uint64_t guid);
+        static uint32_t CharacterValidateName(const char* name);
         static void Disconnect();
         static const char* GetCurrentLoginPortal();
         static const char* GetCurrentLoginServer();
