@@ -164,6 +164,11 @@ void ClientServices::CharacterDelete(uint64_t guid) {
     ClientServices::Connection()->RequestCharacterDelete(guid);
 }
 
+uint32_t ClientServices::CharacterValidateName(const char* name) {
+    // TODO
+    return 87;
+}
+
 void ClientServices::Disconnect() {
     ClientServices::Connection()->Disconnect();
 }
