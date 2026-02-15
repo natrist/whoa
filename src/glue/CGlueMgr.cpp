@@ -231,6 +231,34 @@ void CGlueMgr::EnterWorld() {
     CGlueMgr::SetIdleState(IDLE_ENTER_WORLD);
 }
 
+void CGlueMgr::FactionChange(uint64_t guid, const CHARACTER_CREATE_INFO* info) {
+    if (guid && info) {
+        if (*info->name) {
+            SetIdleState(IDLE_9);
+
+            auto text = FrameScript_GetText("FACTION_CHANGE_IN_PROGRESS", -1, GENDER_NOT_APPLICABLE);
+
+            FrameScript_SignalEvent(OPEN_STATUS_DIALOG, "%s%s", "CANCEL", text);
+
+            CDataStore netMsg;
+            netMsg.Put(static_cast<uint32_t>(CMSG_CHAR_FACTION_CHANGE));
+            netMsg.Put(guid);
+            netMsg.PutString(info->name);
+            netMsg.Put(info->sexID);
+            netMsg.Put(info->skinID);
+            netMsg.Put(info->hairColorID);
+            netMsg.Put(info->hairStyleID);
+            netMsg.Put(info->facialHairStyleID);
+            netMsg.Put(info->faceID);
+            netMsg.Put(info->raceID);
+
+            netMsg.Finalize();
+
+            ClientServices::Send(&netMsg);
+        }
+    }
+}
+
 void CGlueMgr::DisplayLoginStatus() {
     // No change
     if (CGlueMgr::m_lastLoginState == CGlueMgr::m_loginState && CGlueMgr::m_lastLoginResult == CGlueMgr::m_loginResult) {
