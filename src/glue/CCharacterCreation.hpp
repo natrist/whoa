@@ -27,6 +27,7 @@ class CCharacterCreation {
         // Static functions
         static void CalcClasses(int32_t raceID);
         static void CreateComponent(ComponentData* data, bool randomize);
+        static void CreateCharacter(const char* name);
         static void Dress();
         static int32_t GetRandomClassID();
         static void GetRandomRaceAndSex(ComponentData* data);
