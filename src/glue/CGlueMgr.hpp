@@ -69,6 +69,7 @@ class CGlueMgr {
         // Static functions
         static void CancelRealmListQuery();
         static void ChangeRealm(const REALM_INFO* realmInfo);
+        static void CreateCharacter(const CHARACTER_CREATE_INFO* info);
         static void CustomizeCharacter(uint64_t guid, const CHARACTER_CREATE_INFO* info);
         static void DeleteCharacter(uint64_t guid);
         static void DisplayLoginStatus();
