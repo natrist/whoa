@@ -166,6 +166,32 @@ int32_t ClientConnection::PollStatus(WOWCS_OPS& op, const char** msg, int32_t& r
     return this->m_statusComplete;
 }
 
+void ClientConnection::RequestCharacterCreate(const CHARACTER_CREATE_INFO& info) {
+    this->Initiate(COP_CREATE_CHARACTER, 68, nullptr);
+
+    if (this->IsConnected()) {
+        CDataStore netMsg;
+        netMsg.Put(static_cast<uint32_t>(CMSG_CHAR_CREATE));
+        netMsg.PutString(info.name);
+        netMsg.Put(info.raceID);
+        netMsg.Put(info.classID);
+        netMsg.Put(info.sexID);
+        netMsg.Put(info.skinID);
+        netMsg.Put(info.faceID);
+        netMsg.Put(info.hairStyleID);
+        netMsg.Put(info.hairColorID);
+        netMsg.Put(info.facialHairStyleID);
+        netMsg.Put(info.outfitID);
+
+        netMsg.Finalize();
+
+        this->Send(&netMsg);
+    }
+    else {
+        this->Cancel(4);
+    }
+}
+
 void ClientConnection::RequestCharacterDelete(uint64_t guid) {
     this->Initiate(COP_DELETE_CHARACTER, 70, nullptr);
 
